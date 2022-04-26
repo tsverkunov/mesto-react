@@ -27,11 +27,10 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, userName, userDescriptio
         </button>
       </section>
       <section className="cards">
-        {cards.map(card => {
-          return (
+        {cards.map(card => (
             <Card card={card} key={card._id} onCardClick={onCardClick}/>
           )
-        })}
+        )}
       </section>
     </main>)
 }
