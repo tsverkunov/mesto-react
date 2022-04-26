@@ -4,7 +4,7 @@ function ImagePopup({card, onClose}) {
   return (
     <>
       {!card
-        ? <>loading...</>
+        ? null
         :
         <div className={`popup ${card ? 'popup_opened' : ''}`} id="popup-image">
           <div className="popup__container popup__container_img">
