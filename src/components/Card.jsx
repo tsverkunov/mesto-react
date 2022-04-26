@@ -8,7 +8,7 @@ function Card({card, onCardClick}) {
 
   return (
     <article className="card">
-      <img src={card.link} alt="" className="card__image" onClick={handleClick}/>
+      <img src={card.link} alt={card.name} className="card__image" onClick={handleClick}/>
       <button type="button" className="card__delete-button" aria-label="Удалить"/>
       <div className="card__title-wrap">
         <h2 className="card__title">{card.name}</h2>
