@@ -1,0 +1,6 @@
+.card__title-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 21px 27px 20px;
+}

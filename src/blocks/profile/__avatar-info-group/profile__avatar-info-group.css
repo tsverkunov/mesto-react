@@ -1,0 +1,6 @@
+@media screen and (min-width: 700px) {
+  .profile__avatar-info-group {
+    display: flex;
+    align-items: center;
+  }
+}

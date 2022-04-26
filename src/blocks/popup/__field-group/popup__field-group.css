@@ -1,0 +1,9 @@
+.popup__field-group {
+  padding: 0 0 15px;
+}
+
+@media screen and (min-width: 700px) {
+  .popup__field-group {
+    padding: 0 0 30px;
+  }
+}

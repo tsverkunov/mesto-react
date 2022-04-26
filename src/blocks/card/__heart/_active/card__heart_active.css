@@ -1,0 +1,4 @@
+.card__heart_active {
+  background: url("../../../../images/heart-union.svg") no-repeat center;
+  background-size: contain;
+}
