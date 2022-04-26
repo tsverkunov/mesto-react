@@ -1,5 +1,6 @@
-# Mesta Russia
+# Mesto Russia
 
+### React - SPA
 ### Описание
 
 [*Здесь &rarr;*](https://tsverkunov.github.io/mesto/ "Mesta") Проект Mesto - покажет тебе твое место:)
