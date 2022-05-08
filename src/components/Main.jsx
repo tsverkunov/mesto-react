@@ -1,11 +1,9 @@
 import React, {useContext} from 'react'
 import buttonPlus from '../images/plus_icon.svg'
 import Card from './Card'
-import {CurrentUserContext} from "../contexts/CurrentUserContext";
-import {useEffect, useState} from "react";
-import {api} from "../utils/api";
+import {CurrentUserContext} from '../contexts/CurrentUserContext'
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete}) {
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDeletePopupOpen}) {
   const currentUser = useContext(CurrentUserContext)
 
   return (
@@ -37,7 +35,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCa
                   key={card._id}
                   onCardClick={onCardClick}
                   onCardLike={onCardLike}
-                  onCardDelete={onCardDelete}
+                  onCardDeletePopupOpen={onCardDeletePopupOpen}
             />
           )
         )}

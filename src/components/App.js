@@ -14,9 +14,11 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
+  const [isDeleteCardPopupOpen, setIsDeleteCardPopupOpen] = useState(false)
   const [selectedCard, setSelectedCard] = useState(null)
   const [currentUser, setCurrentUser] = useState({})
   const [cards, setCards] = useState([])
+  const [currentCard, setCurrentCard] = useState('')
 
   useEffect(() => {
     api.getProfile()
@@ -44,6 +46,7 @@ function App() {
     setIsEditAvatarPopupOpen(false)
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
+    setIsDeleteCardPopupOpen(false)
     setSelectedCard(null)
   }
   const handleCardClick = (card) => {
@@ -74,10 +77,13 @@ function App() {
 
   const handleCardDelete = (card) => {
     api.deleteCard(card._id)
-      .then(() => setCards(state => (
-          [...state.filter(c => c._id !== card._id)]
+      .then(() => {
+        setCards(state => (
+            [...state.filter(c => c._id !== card._id)]
+          )
         )
-      ))
+      }
+  )
   }
   const handleAddPlaceSubmit = ({name, link}) => {
     api.addCard(name, link)
@@ -85,6 +91,16 @@ function App() {
         setCards([newCard, ...cards])
         closeAllPopups()
       })
+  }
+
+  const handleCardDeletePopupOpen = (card) => {
+    setCurrentCard(card)
+    setIsDeleteCardPopupOpen(true)
+  }
+  const handleSuccessSubmit = (e) => {
+    e.preventDefault()
+    handleCardDelete(currentCard)
+    closeAllPopups()
   }
 
   return (
@@ -98,7 +114,7 @@ function App() {
             onEditAvatar={handleEditAvatarClick}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardDeletePopupOpen={handleCardDeletePopupOpen}
             cards={cards}
           />
           <Footer/>
@@ -117,6 +133,9 @@ function App() {
           <PopupWithForm title='Вы уверены?'
                          name='delete-card'
                          textButton='Да'
+                         isOpen={isDeleteCardPopupOpen}
+                         onClose={closeAllPopups}
+                         onSubmit={handleSuccessSubmit}
           />
           <ImagePopup card={selectedCard}
                       onClose={closeAllPopups}
