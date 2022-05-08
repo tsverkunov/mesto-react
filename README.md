@@ -1,6 +1,6 @@
 # Mesto Russia
 
-### [*Ссылка на приложение &rarr;*](https://tsverkunov.github.io/mesto/ "Mesto") React - SPA "Mesto"
+### [*Ссылка на приложение &rarr;*](https://tsverkunov.github.io/mesto-react/ "Mesto") React - SPA "Mesto"
 
 ## Описание
 
