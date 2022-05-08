@@ -25,10 +25,7 @@
 ```sh
 npm install
 ```
-или 
-```sh 
-yarn install
-```
+
 Запустите приложение командой 
 ```sh
 npm start
