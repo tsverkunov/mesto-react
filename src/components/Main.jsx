@@ -1,9 +1,17 @@
 import React, {useContext} from 'react'
-import buttonPlus from '../images/plus_icon.svg'
 import Card from './Card'
+import buttonPlus from '../images/plus_icon.svg'
 import {CurrentUserContext} from '../contexts/CurrentUserContext'
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDeletePopupOpen}) {
+function Main({
+                onEditProfile,
+                onAddPlace,
+                onEditAvatar,
+                onCardClick,
+                cards,
+                onCardLike,
+                onCardDeletePopupOpen
+              }) {
   const currentUser = useContext(CurrentUserContext)
 
   return (
@@ -31,11 +39,12 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCa
       </section>
       <section className="cards">
         {cards.map(card => (
-            <Card card={card}
-                  key={card._id}
-                  onCardClick={onCardClick}
-                  onCardLike={onCardLike}
-                  onCardDeletePopupOpen={onCardDeletePopupOpen}
+            <Card
+              card={card}
+              key={card._id}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
+              onCardDeletePopupOpen={onCardDeletePopupOpen}
             />
           )
         )}
