@@ -3,28 +3,21 @@ import PopupWithForm from './PopupWithForm'
 import {CurrentUserContext} from '../contexts/CurrentUserContext'
 
 function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-
   const currentUser = useContext(CurrentUserContext)
+  const [formValues, setFormValues] = useState({name: '', about: ''})
+
+  const handleChange = (e) => {
+    const {name, value} = e.target
+    setFormValues(prevState => ({...prevState, [name]: value}))
+  }
 
   useEffect(() => {
-    setName(currentUser.name || '')
-    setDescription(currentUser.about || '')
+    setFormValues({name: currentUser.name || '' , about: currentUser.about || ''})
   }, [currentUser])
 
-  const handleNameValue = (e) => {
-    setName(e.target.value)
-  }
-  const handleDescriptionValue = (e) => {
-    setDescription(e.target.value)
-  }
   const handleSubmit = (e) => {
     e.preventDefault()
-    onUpdateUser({
-      name,
-      about: description,
-    })
+    onUpdateUser(formValues)
   }
 
   return (
@@ -46,8 +39,8 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
             id="popup__field_type_name-profile"
             minLength="2"
             maxLength="40"
-            value={name}
-            onChange={handleNameValue}
+            value={formValues.name}
+            onChange={handleChange}
             required
           />
           <span className="popup__error" id="error-popup__field_type_name-profile"></span>
@@ -61,8 +54,8 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
             id="popup__field_type_about-profile"
             minLength="2"
             maxLength="200"
-            value={description}
-            onChange={handleDescriptionValue}
+            value={formValues.about}
+            onChange={handleChange}
             required
           />
           <span className="popup__error" id="error-popup__field_type_about-profile"></span>
