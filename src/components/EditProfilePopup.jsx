@@ -12,8 +12,8 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   }
 
   useEffect(() => {
-    setFormValues({name: currentUser.name || '' , about: currentUser.about || ''})
-  }, [currentUser])
+    setFormValues({name: currentUser.name || '', about: currentUser.about || ''})
+  }, [currentUser, isOpen])
 
   const handleSubmit = (e) => {
     e.preventDefault()

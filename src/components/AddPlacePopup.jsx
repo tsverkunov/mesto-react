@@ -12,6 +12,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
   const handleSubmit = (e) => {
     e.preventDefault()
     onAddPlace(formValues)
+    setFormValues({name: '', link: ''})
   }
 
   return (

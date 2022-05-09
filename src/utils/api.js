@@ -5,14 +5,13 @@ class Api {
   }
 
   _getResponseData(res) {
-    return  !res.ok ? Promise.reject(`Ошибка: ${res.status}`) : res.json()
+    return !res.ok ? Promise.reject(`Ошибка: ${res.status}`) : res.json()
   }
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-
       .then(res => this._getResponseData(res))
   }
 

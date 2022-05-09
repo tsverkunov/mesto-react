@@ -22,8 +22,7 @@ function App() {
 
   useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
-      .then(resList => {
-        const [profile, cards] = resList
+      .then(([profile, cards]) => {
         setCurrentUser(profile)
         setCards(cards)
       })
