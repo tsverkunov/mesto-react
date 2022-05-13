@@ -1,7 +1,7 @@
 import React, {useRef} from 'react'
 import PopupWithForm from './PopupWithForm'
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, preloader}) {
   const inputRef = useRef()
 
   function handleSubmit(e) {
@@ -20,6 +20,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      preloader={preloader}
     >
       <div className="popup__field-container popup__field-container_type_link-edit-avatar">
         <input

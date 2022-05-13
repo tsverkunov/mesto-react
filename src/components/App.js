@@ -19,6 +19,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({})
   const [cards, setCards] = useState([])
   const [currentCard, setCurrentCard] = useState({})
+  const [preloader, setPreloader] = useState(false)
 
   useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
@@ -53,20 +54,24 @@ function App() {
     setIsDeleteCardPopupOpen(true)
   }
   const handleUpdateUser = ({name, about}) => {
+    setPreloader(true)
     api.setUserInfo(name, about)
       .then(res => {
         setCurrentUser(res)
         closeAllPopups()
       })
       .catch(console.log)
+      .finally(() => setPreloader(false))
   }
   const handleUpdateAvatar = ({avatar}) => {
+    setPreloader(true)
     api.setUserAvatar(avatar)
       .then(res => {
         setCurrentUser(res)
         closeAllPopups()
       })
       .catch(console.log)
+      .finally(() => setPreloader(false))
   }
   const handleCardLike = (card) => {
     const isLiked = card.likes.some(i => i._id === currentUser._id)
@@ -84,12 +89,14 @@ function App() {
       .catch(console.log)
   }
   const handleAddPlaceSubmit = ({name, link}) => {
+    setPreloader(true)
     api.addCard(name, link)
       .then((newCard) => {
         setCards([newCard, ...cards])
         closeAllPopups()
       })
       .catch(console.log)
+      .finally(() => setPreloader(false))
   }
   const handleSuccessSubmit = (e) => {
     e.preventDefault()
@@ -116,16 +123,19 @@ function App() {
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
+            preloader={preloader}
           />
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit}
+            preloader={preloader}
           />
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
+            preloader={preloader}
           />
           <PopupWithForm
             title="Вы уверены?"

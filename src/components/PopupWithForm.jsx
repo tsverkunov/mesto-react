@@ -7,7 +7,8 @@ function PopupWithForm({
                          children,
                          isOpen,
                          onClose,
-                         onSubmit
+                         onSubmit,
+                         preloader
                        }) {
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id={`popup-${name}`}>
@@ -23,7 +24,7 @@ function PopupWithForm({
         <form onSubmit={onSubmit} className="popup__form" id="popup__form-profile" name={name} noValidate>
           {children}
           <button type="submit" className="popup__button-submit" id={`popup__button-submit-${name}`}>
-            {textButton}
+            {preloader ? 'Сохранение...' : textButton}
           </button>
         </form>
       </div>

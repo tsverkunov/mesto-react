@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import PopupWithForm from './PopupWithForm'
 import {CurrentUserContext} from '../contexts/CurrentUserContext'
 
-function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
+function EditProfilePopup({isOpen, onClose, onUpdateUser, preloader}) {
   const currentUser = useContext(CurrentUserContext)
   const [formValues, setFormValues] = useState({name: '', about: ''})
 
@@ -28,6 +28,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      preloader={preloader}
     >
       <div className="popup__field-group">
         <div className="popup__field-container">

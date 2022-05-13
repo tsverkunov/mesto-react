@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import PopupWithForm from './PopupWithForm'
 
-function AddPlacePopup({isOpen, onClose, onAddPlace}) {
+function AddPlacePopup({isOpen, onClose, onAddPlace, preloader}) {
 
   const [formValues, setFormValues] = useState({name: '', link: ''})
   const handleChange = (e) => {
@@ -23,6 +23,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      preloader={preloader}
     >
       <div className="popup__field-group">
         <div className="popup__field-container">
