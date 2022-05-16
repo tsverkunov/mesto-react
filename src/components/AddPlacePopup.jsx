@@ -2,18 +2,26 @@ import React, {useState} from 'react'
 import PopupWithForm from './PopupWithForm'
 
 function AddPlacePopup({isOpen, onClose, onAddPlace, preloader}) {
-
   const [formValues, setFormValues] = useState({name: '', link: ''})
-  const handleChange = (e) => {
-    const {name, value} = e.target
-    setFormValues(prevState => ({...prevState, [name]: value}))
-  }
+  const [formErrors, setFormErrors] = useState({name: '', link: ''})
 
+  const handleChange = (e) => {
+    const {name, value, validationMessage} = e.target
+    setFormValues({...formValues, [name]: value})
+    setFormErrors({...formErrors, [name]: validationMessage})
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
     onAddPlace(formValues)
     setFormValues({name: '', link: ''})
   }
+  // useEffect(() => {
+  //   Object.keys(formValues).forEach(key => {
+  //     if(!formValues[key]) {
+  //       setFormErrors({...formErrors, [key]: 'Заполните это поле.'})
+  //     }
+  //   })
+  // },[])
 
   return (
     <PopupWithForm
@@ -24,6 +32,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, preloader}) {
       onClose={onClose}
       onSubmit={handleSubmit}
       preloader={preloader}
+      formErrors={formErrors}
     >
       <div className="popup__field-group">
         <div className="popup__field-container">
@@ -39,7 +48,12 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, preloader}) {
             onChange={handleChange}
             required
           />
-          <span className="popup__error" id="error-popup__field_type_name-add-cards"></span>
+          <span
+            className="popup__error"
+            id="error-popup__field_type_name-add-cards"
+          >
+          {formErrors.name}
+          </span>
         </div>
         <div className="popup__field-container">
           <input
@@ -52,7 +66,12 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, preloader}) {
             onChange={handleChange}
             required
           />
-          <span className="popup__error" id="error-popup__field_type_link-add-cards"></span>
+          <span
+            className="popup__error"
+            id="error-popup__field_type_link-add-cards"
+          >
+          {formErrors.link}
+          </span>
         </div>
       </div>
     </PopupWithForm>

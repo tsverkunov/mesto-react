@@ -5,16 +5,17 @@ import {CurrentUserContext} from '../contexts/CurrentUserContext'
 function EditProfilePopup({isOpen, onClose, onUpdateUser, preloader}) {
   const currentUser = useContext(CurrentUserContext)
   const [formValues, setFormValues] = useState({name: '', about: ''})
-
-  const handleChange = (e) => {
-    const {name, value} = e.target
-    setFormValues(prevState => ({...prevState, [name]: value}))
-  }
+  const [formErrors, setFormErrors] = useState({name: '', about: ''})
 
   useEffect(() => {
     setFormValues({name: currentUser.name || '', about: currentUser.about || ''})
   }, [currentUser, isOpen])
 
+  const handleChange = (e) => {
+    const {name, value, validationMessage} = e.target
+    setFormValues(prevState => ({...prevState, [name]: value}))
+    setFormErrors(prevState => ({...prevState, [name]: validationMessage}))
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
     onUpdateUser(formValues)
@@ -29,6 +30,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser, preloader}) {
       onClose={onClose}
       onSubmit={handleSubmit}
       preloader={preloader}
+      formErrors={formErrors}
     >
       <div className="popup__field-group">
         <div className="popup__field-container">
@@ -44,7 +46,12 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser, preloader}) {
             onChange={handleChange}
             required
           />
-          <span className="popup__error" id="error-popup__field_type_name-profile"></span>
+          <span
+            className="popup__error"
+            id="error-popup__field_type_name-profile"
+          >
+            {formErrors.name}
+          </span>
         </div>
         <div className="popup__field-container">
           <input
@@ -59,7 +66,12 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser, preloader}) {
             onChange={handleChange}
             required
           />
-          <span className="popup__error" id="error-popup__field_type_about-profile"></span>
+          <span
+            className="popup__error"
+            id="error-popup__field_type_about-profile"
+          >
+            {formErrors.about}
+          </span>
         </div>
       </div>
     </PopupWithForm>
