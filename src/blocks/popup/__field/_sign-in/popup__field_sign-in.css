@@ -1,0 +1,10 @@
+.popup__field_sign-in {
+    background: black;
+    border-bottom: #ccc solid 2px;
+    color: #fff;
+    font-weight: 500;
+}
+.popup__field_sign-in::placeholder {
+    color: #ccc;
+    font-weight: 400;
+}

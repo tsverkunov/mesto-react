@@ -9,6 +9,9 @@ import EditAvatarPopup from './EditAvatarPopup'
 import AddPlacePopup from './AddPlacePopup'
 import {api} from '../utils/api'
 import {CurrentUserContext} from '../contexts/CurrentUserContext'
+import {Redirect, Route, Switch} from 'react-router-dom'
+import Register from './Register'
+import Login from './Login'
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
@@ -20,6 +23,7 @@ function App() {
   const [cards, setCards] = useState([])
   const [currentCard, setCurrentCard] = useState({})
   const [preloader, setPreloader] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
     Promise.all([api.getProfile(), api.getInitialCards()])
@@ -109,16 +113,32 @@ function App() {
       <div className="page">
         <div className="page__container">
           <Header/>
-          <Main
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onEditAvatar={handleEditAvatarClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDeletePopupOpen={handleCardDeletePopupOpen}
-            cards={cards}
-          />
-          <Footer/>
+          <Switch>
+            <Route exact path='/'>
+              {loggedIn? <Redirect to='/cards' /> : <Redirect to='/sign-in' />}
+            </Route>
+            <Route path="/cards">
+              <Main
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDeletePopupOpen={handleCardDeletePopupOpen}
+                cards={cards}
+              />
+              <Footer/>
+            </Route>
+            <Route path="/sign-up">
+              <Register/>
+            </Route>
+            <Route path="/sign-in">
+              <Login/>
+            </Route>
+            {/*<Route path='/*'>*/}
+            {/*  <h1>Страница не найдена</h1>*/}
+            {/*</Route>*/}
+          </Switch>
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
