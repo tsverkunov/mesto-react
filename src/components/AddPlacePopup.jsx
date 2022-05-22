@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import PopupWithForm from './PopupWithForm'
 
 function AddPlacePopup({isOpen, onClose, onAddPlace, preloader}) {
   const [formValues, setFormValues] = useState({name: '', link: ''})
   const [formErrors, setFormErrors] = useState({name: '', link: ''})
-  // const [error, setError] = useState({name: true, link: true})
 
   const handleChange = (e) => {
     const {name, value, validationMessage} = e.target
@@ -16,17 +15,6 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, preloader}) {
     onAddPlace(formValues)
     setFormValues({name: '', link: ''})
   }
-  // useEffect(() => {
-  //   Object.keys(error).forEach(key => {
-  //     if(error[key]) {
-  //       setFormErrors({...formErrors, [key]: 'Заполните это поле.'})
-  //     }
-  //   })
-  // },[])
-  // useEffect(() => {
-  //   error.name && setFormErrors({...formErrors, name: 'Заполните это поле.'})
-  //   error.link && setFormErrors({...formErrors, link: 'Заполните это поле.'})
-  // }, [])
 
   return (
     <PopupWithForm

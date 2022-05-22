@@ -1,25 +1,25 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 
-function Register() {
+function Register({onRegister}) {
   const [formValues, setFormValues] = useState({email: '', password: ''})
-  const [formErrors, setFormErrors] = useState({email: '', password: ''})
-  const [isButtonDisabled , setIsButtonDisabled] = useState(true)
-
 
   const handleChange = (e) => {
-    const {name, value, validationMessage} = e.target
+    const {name, value} = e.target
     setFormValues({...formValues, [name]: value})
-    // setFormErrors({...formErrors, [name]: validationMessage})
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onRegister(formValues)
   }
 
   return (
     <div className="popup__container popup__container_sign-in">
       <h2 className="popup__title">Регистрация</h2>
       <form
-        // onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         className="popup__form"
-        id="popup__form-profile"
+        id="popup__form-sign-up"
         name="register"
         noValidate
       >
@@ -29,11 +29,11 @@ function Register() {
               type="email"
               name="email"
               placeholder="Email"
-              className="popup__field popup__field_type_name popup__field_sign-in"
-              id="popup__field_type_name-add-cards"
+              className="popup__field popup__field_type_email popup__field_sign-in"
+              id="popup__field_type_email-sign-up"
               minLength="2"
               maxLength="30"
-              value={formValues.name}
+              value={formValues.email}
               onChange={handleChange}
               required
             />
@@ -41,7 +41,6 @@ function Register() {
               className="popup__error"
               id="error-popup__field_type_name-add-cards"
             >
-          {formErrors.name}
           </span>
           </div>
           <div className="popup__field-container">
@@ -49,9 +48,9 @@ function Register() {
               type="password"
               name="password"
               placeholder="Пароль"
-              className="popup__field popup__field_type_link popup__field_sign-in"
-              id="popup__field_type_link-add-cards"
-              value={formValues.link}
+              className="popup__field popup__field_type_password popup__field_sign-in"
+              id="popup__field_type_password-sign-up"
+              value={formValues.password}
               onChange={handleChange}
               required
             />
@@ -59,22 +58,18 @@ function Register() {
               className="popup__error"
               id="error-popup__field_type_link-add-cards"
             >
-          {formErrors.link}
           </span>
           </div>
         </div>
         <button
           type="submit"
           className="popup__button-submit popup__button-submit_sign-in"
-          // id={`popup__button-submit-${name}`}
-          // disabled={isButtonDisabled}
         >
           Зарегистрироваться
-          {/*{preloader ? 'Сохранение...' : textButton}*/}
         </button>
         <span className="popup__registered-sign-in">
           Уже зарегистрированы?
-          <Link to='/sign-in' className="popup__sign-in-link"> Войти</Link>
+          <Link to="/sign-in" className="popup__sign-in-link"> Войти</Link>
         </span>
       </form>
     </div>

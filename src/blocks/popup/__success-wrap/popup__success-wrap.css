@@ -1,0 +1,6 @@
+.popup__success-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+}
