@@ -16,22 +16,9 @@ function InfoTooltip({isOpen, onClose, isSuccess, errorMessage}) {
         <div className="popup__success-wrap">
           <img src={isSuccess ? successImg : errorImg} alt="Успешно" className='popup__success-image'/>
           <span className="popup__success-message">
-            {isSuccess ? 'Вы успешно зарегистрировались!' : errorMessage}
+            {isSuccess ? 'Вы успешно зарегистрировались!' : errorMessage||'Что-то пошло не так :('}
           </span>
         </div>
-
-
-        {/*<figure className="popup__figure">*/}
-        {/*  <img*/}
-        {/*    className="popup__image"*/}
-        {/*    src={card?.link}*/}
-        {/*    alt={card?.name}*/}
-        {/*    id="popup__image-image"*/}
-        {/*  />*/}
-        {/*  <figcaption className="popup__image-caption">*/}
-        {/*    {card?.name}*/}
-        {/*  </figcaption>*/}
-        {/*</figure>*/}
       </div>
     </div>
   )
