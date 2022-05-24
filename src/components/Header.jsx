@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../images/logo.svg'
 import {Link, useLocation} from 'react-router-dom'
+import ButtonBurger from './ButtonBurger'
 
 function Header({loggedIn, ownerEmail, onSignOut}) {
   const location = useLocation()
@@ -11,7 +12,8 @@ function Header({loggedIn, ownerEmail, onSignOut}) {
   return (
     <header className="header">
       <img src={logo} alt="логотип" className="header__logo"/>
-      <div className="container">
+      <ButtonBurger/>
+      <div className="header__container">
         <span className="header__login">{ownerEmail}</span>
         {loggedIn
           ? <Link to="/sign-in" className="header__sign-in header__sign-in_out" onClick={handleClick}>Выйти</Link>

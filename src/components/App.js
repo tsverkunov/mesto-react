@@ -197,7 +197,11 @@ function App() {
               />
             </Route>
             <Route path="/sign-in">
-              <Login setLoggedIn={setLoggedIn} onLogin={handleLogin}/>
+              <Login
+                onSendData={handleLogin}
+                title="Вход"
+                buttonText="Войти"
+              />
             </Route>
           </Switch>
           <EditProfilePopup

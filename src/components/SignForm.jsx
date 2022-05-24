@@ -1,22 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-
-function Login({children, title, buttonText, onSendData}) {
-  const [formValues, setFormValues] = useState({email: '', password: ''})
-
-  const handleChange = (e) => {
-    const {name, value} = e.target
-    setFormValues({...formValues, [name]: value})
-  }
-
-  const onSubmit = (e) => {
-    e.preventDefault()
-    onSendData(formValues)
-  }
-
+function SignForm() {
   return (
     <div className="popup__container popup__container_sign-in">
-      <h2 className="popup__title">{title}</h2>
+      <h2 className="popup__title">Вход</h2>
       <form
         onSubmit={onSubmit}
         className="popup__form"
@@ -66,12 +53,11 @@ function Login({children, title, buttonText, onSendData}) {
           type="submit"
           className="popup__button-submit popup__button-submit_sign-in"
         >
-          {buttonText}
+          Войти
         </button>
-        {children}
       </form>
     </div>
   )
 }
 
-export default Login
+export default SignForm
