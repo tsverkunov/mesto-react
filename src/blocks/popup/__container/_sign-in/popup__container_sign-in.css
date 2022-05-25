@@ -3,5 +3,13 @@
     background: black;
     color: #fff;
     margin: 0 auto;
-    padding: 60px 36px 80px;
+    padding: 60px 0 80px;
+    width: 260px;
+}
+
+@media screen and (min-width: 500px){
+    .popup__container_sign-in{
+        width: 358px;
+        padding: 60px 36px 80px;
+    }
 }

@@ -1,9 +1,12 @@
 .header__container {
+    padding: 0 27px 0 0;
     display: none;
 }
 @media screen and (min-width: 500px){
     .header__container {
-        display: flex;
-        flex-direction: row;
+        padding: 0;
+        /*display: flex;*/
+        /*flex-direction: row;*/
+        display: block;
     }
 }

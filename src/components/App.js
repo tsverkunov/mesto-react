@@ -15,6 +15,7 @@ import Login from './Login'
 import ProtectedRout from './ProtectedRout'
 import InfoTooltip from './InfoTooltip'
 import * as auth from '../utils/auth'
+import MobileMenu from './MobileMenu'
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
@@ -31,6 +32,7 @@ function App() {
   const [isSuccess, setIsSuccess] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [ownerEmail, setOwnerEmail] = useState('')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const history = useHistory()
 
   useEffect(() => {
@@ -159,21 +161,32 @@ function App() {
         checkToken()
       })
   }
+  const handleMobileMenuToggle = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
 
   const signOut = () => {
     localStorage.removeItem('jwt')
     setLoggedIn(false)
     setOwnerEmail('')
+    setIsMobileMenuOpen(false)
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__container">
+          <MobileMenu
+            loggedIn={loggedIn}
+            ownerEmail={ownerEmail}
+            onSignOut={signOut}
+            isOpen={isMobileMenuOpen}
+          />
           <Header
             loggedIn={loggedIn}
             ownerEmail={ownerEmail}
             onSignOut={signOut}
+            onToggleMobileMenu={handleMobileMenuToggle}
           />
           <Switch>
             <Route exact path="/">

@@ -44,3 +44,16 @@
     transform: rotate(45deg);
     bottom: 9px;
 }
+.burger span:hover{
+    opacity: .6;
+}
+.burger::before:hover,
+.burger::after:hover {
+    opacity: .6;
+}
+
+@media screen and (min-width: 500px){
+    .burger{
+        display: none;
+    }
+}

@@ -1,4 +1,9 @@
 .popup__sign-in-link {
     color: #fff;
     text-decoration: none;
+    transition: opacity .3s;
+}
+
+.popup__sign-in-link:hover {
+    opacity: .6;
 }
