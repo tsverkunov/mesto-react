@@ -1,0 +1,9 @@
+.header__login-wrap {
+    display: none;
+}
+
+@media screen and (min-width: 500px) {
+    .header__login-wrap {
+        display: block;
+    }
+}
