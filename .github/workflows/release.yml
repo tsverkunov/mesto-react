@@ -19,5 +19,5 @@ jobs:
     needs: print-version
     runs-on: ubuntu-latest
     steps:
-      - name: Print version
-        run: echo ${{ github.ref_name }}
+      - name: Test
+        run: npm run test
