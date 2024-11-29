@@ -1,1 +1,17 @@
+---
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  print-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print version
+        run: echo ${{ github.ref_name }}
 
