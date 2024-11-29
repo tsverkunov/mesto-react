@@ -10,13 +10,12 @@ on:
 
 jobs:
   print-version:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print version
-        run: echo ${{ github.ref_name }}
-
+   runs-on: ubuntu-latest
+   steps:
+    - name: Print version
+      run: echo ${{ github.ref_name }}
   test:
-    needs: print-version
+#    needs: print-version
     runs-on: ubuntu-latest
     steps:
       - name: Test
