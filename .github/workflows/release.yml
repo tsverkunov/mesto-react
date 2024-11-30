@@ -10,13 +10,15 @@ on:
 
 jobs:
   print-version:
-   runs-on: ubuntu-latest
-   steps:
-    - name: Print version
-      run: echo ${{ github.ref_name }}
-  test:
-#    needs: print-version
     runs-on: ubuntu-latest
     steps:
+      - name: Print version
+        run: echo ${{ github.ref_name }}
+  test:
+    #    needs: print-version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set working directory
+        run: cd /home/runner/work/mesto-react/mesto-react
       - name: Test
         run: npm run test
