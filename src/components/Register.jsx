@@ -1,8 +1,8 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import Login from './Login'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import Login from './Login';
 
-function Register({onRegister}) {
+function Register({ onRegister }) {
 
   return (
     <Login
@@ -15,7 +15,7 @@ function Register({onRegister}) {
         <Link to="/sign-in" className="popup__sign-in-link"> Войти</Link>
       </span>
     </Login>
-  )
+  );
 }
 
-export default Register
+export default Register;
